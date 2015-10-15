@@ -18,16 +18,24 @@
   (reduce (fn [seq item] (cons item seq)) [] a-seq))
 
 (defn min-max-element [a-seq]
-  (reduce (fn [[vmin vmax] val] [(min vmin val) (max vmax val)]) [100 -1] a-seq))
+  (reduce (fn [[vmin vmax] val] [(min vmin val) (max vmax val)]) 
+          [10 0] a-seq))
 
 (defn insert [sorted-seq n]
-  [:-])
+  (let [ pred (fn [x] (<= x n)) ]
+    (concat (take-while pred sorted-seq) [n] (drop-while pred sorted-seq))))
 
 (defn insertion-sort [a-seq]
-  [:-])
+  (reduce insert [] a-seq))
+
+; reuse toggle from previous exercise
+(defn toggle [a-set elem]
+  (if (contains? a-set elem)
+    (disj a-set elem)
+    (conj a-set elem)))
 
 (defn parity [a-seq]
-  [:-])
+  (reduce toggle #{} a-seq))
 
 (defn minus 
   ([x] (- x))
@@ -36,8 +44,11 @@
 (defn count-params [& x]
   (count x))
 
-(defn my-* [x]
-  :-)
+(defn my-* 
+  ([] 1)
+  ([x] x)
+  ([x y] (* x y))
+  ([x y & more] (reduce (fn [acc i] (* acc i)) (* x y) more)))
 
 (defn pred-and [x]
   (fn [x] :-))
