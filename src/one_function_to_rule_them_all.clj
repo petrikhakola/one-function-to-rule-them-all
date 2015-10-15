@@ -12,7 +12,7 @@
   (rest (reduce (fn [seq item] (conj seq x item)) [] a-seq)))
 
 (defn my-count [a-seq]
-  (reduce (fn [a] (inc a)) 0 a-seq))
+  (reduce (fn [a i] (inc a)) 0 a-seq))
 
 (defn my-reverse [a-seq]
   (reduce (fn [seq item] (cons item seq)) [] a-seq))
